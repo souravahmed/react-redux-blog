@@ -16,11 +16,12 @@ npm start
 
 ## Features
 
-- List view for user, post
+- list view for user, post
 - search while typing on list view both for user and post
 - details view both for user and post
 - show comments for specific post and hide them
 - sort posts by user
+- live search in dropdown
 
 ### `npm start`
 

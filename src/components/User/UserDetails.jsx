@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../redux";
 import Loader from "../Shared/Loader";
-import BackButton from "../Shared/BackButton";
+import LinkButton from "../Shared/LinkButton";
 
 const UserDetails = () => {
   const { userId } = useParams();
@@ -33,7 +33,7 @@ const UserDetails = () => {
               <i className="fas fa-globe"></i> {state.user?.website} <br />
               <i className="far fa-building"></i> {state.user?.company?.name}
             </address>
-            <BackButton path="/users" />
+            <LinkButton path="/users" />
           </div>
         )}
       </div>

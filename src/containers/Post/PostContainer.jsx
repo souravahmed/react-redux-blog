@@ -5,7 +5,8 @@ import DataTable from "../../components/Shared/DataTable";
 import Search from "../../components/Shared/Search";
 import Loader from "../../components/Shared/Loader";
 import DataTableInstance from "../../uitils/DataTableUtils";
-import SelectDropDown from "../../components/Shared/SelectDropDown";
+import LiveSearchDropDown from "../../components/Shared/LiveSearchDropDown";
+import LinkButton from "../../components/Shared/LinkButton";
 
 const PostContainer = () => {
   const postState = useSelector((state) => state.post);
@@ -24,7 +25,6 @@ const PostContainer = () => {
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchUsers());
-    console.log(userState);
   }, [dispatch]);
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const PostContainer = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleFilterByUserPost = (e) => {
-    const userId = e.target.value;
-    const query = userId === "0" ? "posts" : `posts?userId=${userId}`;
+  const handleFilterByUserPost = (obj) => {
+    const userId = obj.value;
+    const query = userId === 0 ? "posts" : `posts?userId=${userId}`;
     setSelecteUserId(userId);
     setFilterByUserQuery(query);
   };
@@ -51,6 +51,11 @@ const PostContainer = () => {
     actionType: DataTableInstance.VIEW_ACTION,
   });
 
+  const options = userState?.users?.map((user) => {
+    return { label: user.name, value: user.id };
+  });
+  options.unshift({ label: "Select a user", value: 0 });
+
   return (
     <div className="card m-5">
       <div className="card-header">Total Posts: {postState?.posts?.length}</div>
@@ -60,11 +65,19 @@ const PostContainer = () => {
             <Search handleSearch={handleSearch} />
           </div>
           <div className="col-md-3">
-            <SelectDropDown
-              handleOnSelect={handleFilterByUserPost}
-              options={userState?.users}
+            <LiveSearchDropDown
+              options={options}
+              onChange={handleFilterByUserPost}
               selectedValue={selecteUserId}
             />
+          </div>
+          <div className="col-md-2">
+            <LinkButton
+              path="/posts/add"
+              btnClasses="btn btn-md btn-success"
+              text="Add"
+              iconClass="fas fa-plus"
+            ></LinkButton>
           </div>
         </div>
         <div className="row">
