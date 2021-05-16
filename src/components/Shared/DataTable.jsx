@@ -9,7 +9,7 @@ const DataTable = ({ table }) => {
   return (
     <div className="scrollbar">
       <table className="table table-striped">
-        <thead className="thead-dark ">
+        <thead className="table-dark">
           <tr>
             {table.headers.map((header, index) => (
               <th key={index}>{header}</th>
@@ -18,9 +18,9 @@ const DataTable = ({ table }) => {
           </tr>
         </thead>
         <tbody>
-          {table.data.entities.map((eachData) => (
-            <tr key={eachData.id}>
-              {table.data.entityKeys.map((property, index) => (
+          {table.data?.entities?.map((eachData) => (
+            <tr key={eachData?.id}>
+              {table.data?.entityKeys?.map((property, index) => (
                 <td key={index}>{eachData[property]}</td>
               ))}
               <td>
@@ -69,5 +69,5 @@ const DataTable = ({ table }) => {
 export default DataTable;
 
 DataTable.propTypes = {
-  table: PropTypes.instanceOf(DataTableInstance),
+  table: PropTypes.instanceOf(DataTableInstance).isRequired,
 };

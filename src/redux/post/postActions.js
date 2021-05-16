@@ -5,9 +5,13 @@ import {
   FETCH_POST_FAILURE,
   FETCH_POST_REQUEST,
   FETCH_POST_SUCCESS,
+  FETCH_POSTS_BY_USER_ID_REQUEST,
+  FETCH_POSTS_BY_USER_ID_SUCCESS,
+  FETCH_POSTS_BY_USER_ID_FAILURE,
 } from "./postActionTypes";
 import api from "../../api/axios";
 
+// fetch posts
 const fetchPostsRequest = () => {
   return { type: FETCH_POSTS_REQUEST };
 };
@@ -20,6 +24,7 @@ const fetchPostsFailure = (error) => {
   return { type: FETCH_POSTS_FAILURE, error: error };
 };
 
+// fetch post
 const fetchPostRequest = () => {
   return {
     type: FETCH_POST_REQUEST,
@@ -35,6 +40,41 @@ const fetchPostFailure = (error) => {
   return {
     type: FETCH_POST_FAILURE,
     error: error,
+  };
+};
+
+// fetch posts by user id
+
+const fetchPostsByUserIdRequest = () => {
+  return {
+    type: FETCH_POSTS_BY_USER_ID_REQUEST,
+  };
+};
+
+const fetchPostsByUserIdSuccess = (data) => {
+  return {
+    type: FETCH_POSTS_BY_USER_ID_SUCCESS,
+    payload: data,
+  };
+};
+
+const fetchPostsByUserIdFfailure = (error) => {
+  return {
+    type: FETCH_POSTS_BY_USER_ID_FAILURE,
+    error: error,
+  };
+};
+
+export const fetchPostsByUserId = (query) => {
+  return async (dispatch) => {
+    dispatch(fetchPostsByUserIdRequest(query));
+    try {
+      const response = await api.get(query);
+      dispatch(fetchPostsByUserIdSuccess(response.data));
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchPostsByUserIdFfailure(error.message));
+    }
   };
 };
 

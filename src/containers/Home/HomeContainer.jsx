@@ -3,7 +3,7 @@ import React from "react";
 const HomeContainer = () => {
   return (
     <div className="container">
-      <div className="jumbotron text-center m-5">
+      <div className="shadow p-3 mb-5 bg-body rounded text-center m-5">
         <h1 className="display-1">Fake Blog</h1>
         <p className="lead">
           This is a fake blog powered by{" "}

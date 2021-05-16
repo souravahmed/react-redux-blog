@@ -1,4 +1,4 @@
-# Getting Started with react-blog project
+# Getting Started with react-redux-blog project
 
 This project consume [Json Place Holder API](https://jsonplaceholder.typicode.com/).
 
@@ -9,7 +9,7 @@ clone the project and goto the react-redux-blog folder where package.json reside
 Install the dependencies and start the server. You can install redux dev tools extension for chrome from [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en).
 
 ```sh
-cd react-blog
+cd react-redux-blog
 npm install
 npm start
 ```
@@ -20,6 +20,7 @@ npm start
 - search while typing on list view both for user and post
 - details view both for user and post
 - show comments for specific post and hide them
+- sort posts by user
 
 ### `npm start`
 
