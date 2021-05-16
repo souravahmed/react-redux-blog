@@ -4,6 +4,8 @@ import { Route, Switch, NavLink } from "react-router-dom";
 import HomeContainer from "../../containers/Home/HomeContainer";
 import UserContainer from "../../containers/User/UserContainer";
 import UserDetails from "../User/UserDetails";
+import PostContainer from "../../containers/Post/PostContainer";
+import PostDetails from "../Post/PostDetails";
 const index = () => {
   return (
     <>
@@ -52,7 +54,12 @@ const index = () => {
           <Route exact path="/users">
             <UserContainer />
           </Route>
-          <Route path="/users/:id" children={<UserDetails />} />
+          <Route exact path="/posts">
+            <PostContainer />
+          </Route>
+
+          <Route path="/users/:userId" children={<UserDetails />} />
+          <Route path="/posts/:postId" children={<PostDetails />} />
         </Switch>
       </div>
     </>

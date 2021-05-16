@@ -6,13 +6,14 @@ import Loader from "../Shared/Loader";
 import BackButton from "../Shared/BackButton";
 
 const UserDetails = () => {
-  const { id } = useParams();
+  const { userId } = useParams();
   const state = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUser(id));
-  }, [dispatch, id]);
+    dispatch(fetchUser(userId));
+  }, [dispatch, userId]);
+
   return (
     <div className="card m-5">
       <div className="card-header">User Details</div>

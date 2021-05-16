@@ -1,32 +1,33 @@
 import { React, useEffect, useState } from "react";
-import { fetchUsers } from "../../redux";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchPosts } from "../../redux";
+import DataTable from "../../components/Shared/DataTable";
+import Search from "../../components/Shared/Search";
 import Loader from "../../components/Shared/Loader";
 import DataTableInstance from "../../uitils/DataTableUtils";
-import Search from "../../components/Shared/Search";
-import DataTable from "../../components/Shared/DataTable";
 
-const UserContainer = () => {
-  const state = useSelector((state) => state.user);
+const PostContainer = () => {
+  const state = useSelector((state) => state.post);
   const dispatch = useDispatch();
-  const [query, setQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const table = new DataTableInstance();
-  table.headers = ["Id", "Name", "Email", "Phone Number"];
+  table.headers = ["Id", "UserId", "Title", "Body"];
   table.showActionColumn = true;
-  table.data.entityKeys = ["id", "name", "email", "phone"];
+  table.data.entityKeys = ["id", "userId", "title", "body"];
   table.actions = [];
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchPosts());
   }, [dispatch]);
 
   const handleSearch = (e) => {
-    setQuery(e.target.value);
+    // search call-back
+    setSearchQuery(e.target.value);
   };
 
-  table.data.entities = state.users.filter((user) => {
-    return user.name.toLowerCase().includes(query.toLowerCase());
+  table.data.entities = state.posts.filter((post) => {
+    return post.title.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
   table.actions.push({
@@ -36,7 +37,7 @@ const UserContainer = () => {
 
   return (
     <div className="card m-5">
-      <div className="card-header">Total user: {state.users.length}</div>
+      <div className="card-header">Total Posts: {state?.posts?.length}</div>
       <div className="card-body">
         <div className="row">
           <div className="col-md-4">
@@ -45,7 +46,7 @@ const UserContainer = () => {
         </div>
         <div className="row">
           <div className="col-12 p-5">
-            {state.loading ? <Loader /> : <DataTable table={table} />}
+            {state?.loading ? <Loader /> : <DataTable table={table} />}
           </div>
         </div>
       </div>
@@ -53,4 +54,4 @@ const UserContainer = () => {
   );
 };
 
-export default UserContainer;
+export default PostContainer;
