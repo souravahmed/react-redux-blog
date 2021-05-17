@@ -1,4 +1,7 @@
 import {
+  CREATE_POST_FAILURE,
+  CREATE_POST_REQUEST,
+  CREATE_POST_SUCCESS,
   FETCH_POSTS_BY_USER_ID_FAILURE,
   FETCH_POSTS_BY_USER_ID_REQUEST,
   FETCH_POSTS_BY_USER_ID_SUCCESS,
@@ -67,6 +70,24 @@ export const postReducer = (state = initialState, action) => {
         posts: action.payload,
       };
     case FETCH_POSTS_BY_USER_ID_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    // create post
+    case CREATE_POST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case CREATE_POST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        postCreatedResponse: action.payload,
+      };
+    case CREATE_POST_FAILURE:
       return {
         ...state,
         loading: false,

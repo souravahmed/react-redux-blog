@@ -21,7 +21,9 @@ npm start
 - details view both for user and post
 - show comments for specific post and hide them
 - sort posts by user
-- live search in dropdown
+- live search in dropdown using react-select
+- add post using react-hook-form
+- for validation used hookform/resolvers and yup
 
 ### `npm start`
 

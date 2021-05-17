@@ -1,69 +1,20 @@
 import {
-  FETCH_POSTS_FAILURE,
-  FETCH_POSTS_REQUEST,
-  FETCH_POSTS_SUCCESS,
-  FETCH_POST_FAILURE,
-  FETCH_POST_REQUEST,
-  FETCH_POST_SUCCESS,
-  FETCH_POSTS_BY_USER_ID_REQUEST,
-  FETCH_POSTS_BY_USER_ID_SUCCESS,
-  FETCH_POSTS_BY_USER_ID_FAILURE,
-} from "./postActionTypes";
+  fetchPostsByUserIdRequest,
+  fetchPostsByUserIdSuccess,
+  fetchPostsByUserIdFfailure,
+  fetchPostRequest,
+  fetchPostSuccess,
+  fetchPostFailure,
+  fetchPostsRequest,
+  fetchPostsSuccess,
+  fetchPostsFailure,
+} from "./postFetchActions";
 import api from "../../api/axios";
-
-// fetch posts
-const fetchPostsRequest = () => {
-  return { type: FETCH_POSTS_REQUEST };
-};
-
-const fetchPostsSuccess = (data) => {
-  return { type: FETCH_POSTS_SUCCESS, payload: data };
-};
-
-const fetchPostsFailure = (error) => {
-  return { type: FETCH_POSTS_FAILURE, error: error };
-};
-
-// fetch post
-const fetchPostRequest = () => {
-  return {
-    type: FETCH_POST_REQUEST,
-  };
-};
-const fetchPostSuccess = (data) => {
-  return {
-    type: FETCH_POST_SUCCESS,
-    payload: data,
-  };
-};
-const fetchPostFailure = (error) => {
-  return {
-    type: FETCH_POST_FAILURE,
-    error: error,
-  };
-};
-
-// fetch posts by user id
-
-const fetchPostsByUserIdRequest = () => {
-  return {
-    type: FETCH_POSTS_BY_USER_ID_REQUEST,
-  };
-};
-
-const fetchPostsByUserIdSuccess = (data) => {
-  return {
-    type: FETCH_POSTS_BY_USER_ID_SUCCESS,
-    payload: data,
-  };
-};
-
-const fetchPostsByUserIdFfailure = (error) => {
-  return {
-    type: FETCH_POSTS_BY_USER_ID_FAILURE,
-    error: error,
-  };
-};
+import {
+  createPostFailure,
+  createPostRequest,
+  createPostSuccess,
+} from "./postCreateActions";
 
 export const fetchPostsByUserId = (query) => {
   return async (dispatch) => {
@@ -100,6 +51,19 @@ export const fetchPosts = () => {
     } catch (error) {
       console.log(error);
       dispatch(fetchPostsFailure(error));
+    }
+  };
+};
+
+export const createPost = (data) => {
+  return async (dispatch) => {
+    dispatch(createPostRequest());
+    try {
+      const response = await api.post("posts", JSON.stringify(data));
+      dispatch(createPostSuccess(response.data));
+    } catch (error) {
+      console.log(error);
+      dispatch(createPostFailure(error));
     }
   };
 };
