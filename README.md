@@ -1,11 +1,11 @@
-# Getting Started with react-redux-blog project
+# Getting started with react-redux-blog project
 
 This project consume [Json Place Holder API](https://jsonplaceholder.typicode.com/).
 
 ## Installation
 
-IT requires [Node.js](https://nodejs.org/).
-clone the project and goto the react-redux-blog folder where package.json reside then
+It requires [Node.js](https://nodejs.org/).
+Clone the project and goto the react-redux-blog folder where package.json reside then
 Install the dependencies and start the server. You can install redux dev tools extension for chrome from [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en).
 
 ```sh
@@ -21,7 +21,7 @@ npm start
 - details view both for user and post
 - show comments for specific post and hide them
 - sort posts by user
-- live search in dropdown using react-select
+- live search in dropdown using [react-select](https://react-select.com/home)
 - add/edit post using [react-hook-form](https://react-hook-form.com/) and [hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers)
 - for validation used [yup](https://www.npmjs.com/package/yup)
 
