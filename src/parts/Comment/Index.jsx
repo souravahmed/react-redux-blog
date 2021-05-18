@@ -1,9 +1,9 @@
 import { React, useEffect } from "react";
-import Loader from "../../components/Shared/Loader";
+import Loader from "../../components/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCommentsByPostId } from "../../redux";
 
-const Comments = ({ postId }) => {
+const Index = ({ postId }) => {
   const state = useSelector((state) => state.comment);
   const dispatch = useDispatch();
 
@@ -27,4 +27,4 @@ const Comments = ({ postId }) => {
   );
 };
 
-export default Comments;
+export default Index;

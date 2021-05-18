@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import DataTableInstance from "../../uitils/DataTableUtils";
+import DataTableInstance from "../uitils/DataTableUtils";
 
 const DataTable = ({ table }) => {
   const location = useLocation();

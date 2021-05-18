@@ -1,12 +1,12 @@
 import { React, useState, useEffect } from "react";
-import Loader from "../Shared/Loader";
+import Loader from "../../components/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchPost } from "../../redux";
-import LinkButton from "../Shared/LinkButton";
-import Comments from "../Comments/Comments";
+import LinkButton from "../../components/LinkButton";
+import Comment from "../../parts/Comment/Index";
 
-const ViewPost = () => {
+const View = () => {
   const state = useSelector((state) => state.post);
   const [showComment, setShowComment] = useState(false);
   const [showButtonText, setShowButtonText] = useState("Show comment");
@@ -38,7 +38,7 @@ const ViewPost = () => {
             <button className="btn btn-sm btn-info m-2" onClick={toggleComment}>
               {showButtonText}
             </button>
-            {showComment === true && <Comments postId={postId} />}
+            {showComment === true && <Comment postId={postId} />}
           </>
         )}
       </div>
@@ -46,4 +46,4 @@ const ViewPost = () => {
   );
 };
 
-export default ViewPost;
+export default View;

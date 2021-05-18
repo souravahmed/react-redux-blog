@@ -1,5 +1,5 @@
 import React from "react";
-import MessageType from "../../uitils/MessageTypeUtils";
+import MessageType from "../uitils/MessageTypeUtils";
 
 const AlertMessage = ({ message, messageType }) => {
   const alertClassTypes =

@@ -2,10 +2,10 @@ import { React, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../redux";
-import Loader from "../Shared/Loader";
-import LinkButton from "../Shared/LinkButton";
+import Loader from "../../components/Loader";
+import LinkButton from "../../components/LinkButton";
 
-const ViewUser = () => {
+const View = () => {
   const { userId } = useParams();
   const state = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -41,4 +41,4 @@ const ViewUser = () => {
   );
 };
 
-export default ViewUser;
+export default View;

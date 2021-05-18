@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomeContainer = () => {
+const HomePage = () => {
   return (
     <div className="container">
       <div className="shadow p-3 mb-5 bg-body rounded text-center m-5">
@@ -24,4 +24,4 @@ const HomeContainer = () => {
   );
 };
 
-export default HomeContainer;
+export default HomePage;

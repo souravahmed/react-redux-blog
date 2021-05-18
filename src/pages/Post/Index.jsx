@@ -6,15 +6,15 @@ import {
   fetchPostsByUserId,
   fetchPostUsers,
 } from "../../redux";
-import DataTable from "../../components/Shared/DataTable";
-import Search from "../../components/Shared/Search";
-import Loader from "../../components/Shared/Loader";
+import DataTable from "../../components/DataTable";
+import Search from "../../components/Search";
+import Loader from "../../components/Loader";
 import DataTableInstance from "../../uitils/DataTableUtils";
-import LiveSearchDropDown from "../../components/Shared/LiveSearchDropDown";
-import LinkButton from "../../components/Shared/LinkButton";
-import ConfirmModal from "../../components/Shared/ConfirmModal";
+import LiveSearchDropDown from "../../components/LiveSearchDropDown";
+import LinkButton from "../../components/LinkButton";
+import ConfirmModal from "../../components/ConfirmModal";
 
-const PostContainer = () => {
+const PostPage = () => {
   const postState = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
@@ -123,4 +123,4 @@ const PostContainer = () => {
   );
 };
 
-export default PostContainer;
+export default PostPage;

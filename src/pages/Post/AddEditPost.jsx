@@ -1,14 +1,14 @@
 import { React, useEffect } from "react";
-import LinkButton from "../Shared/LinkButton";
+import LinkButton from "../../components/LinkButton";
 import { useSelector, useDispatch } from "react-redux";
 import { createPost, updatePost, fetchPost, fetchPostUsers } from "../../redux";
-import Loader from "../Shared/Loader";
+import Loader from "../../components/Loader";
 import { useForm, Controller } from "react-hook-form";
 import postSchema from "../../uitils/PostSchemaUtils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Select from "react-select";
 import MessageTypeUtils from "../../uitils/MessageTypeUtils";
-import AlertMessage from "../Shared/AlertMessage";
+import AlertMessage from "../../components/AlertMessage";
 import { useParams } from "react-router-dom";
 
 const AddEditPost = () => {

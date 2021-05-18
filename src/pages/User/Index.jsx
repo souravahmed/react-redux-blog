@@ -1,12 +1,12 @@
 import { React, useEffect, useState } from "react";
 import { fetchUsers } from "../../redux";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "../../components/Shared/Loader";
+import Loader from "../../components/Loader";
 import DataTableInstance from "../../uitils/DataTableUtils";
-import Search from "../../components/Shared/Search";
-import DataTable from "../../components/Shared/DataTable";
+import Search from "../../components/Search";
+import DataTable from "../../components/DataTable";
 
-const UserContainer = () => {
+const Index = () => {
   const state = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
@@ -53,4 +53,4 @@ const UserContainer = () => {
   );
 };
 
-export default UserContainer;
+export default Index;

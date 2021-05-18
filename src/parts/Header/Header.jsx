@@ -1,12 +1,12 @@
 import React from "react";
 import fake_icon from "../../assets/fake_icon.png";
 import { Route, Switch, NavLink } from "react-router-dom";
-import HomeContainer from "../../containers/Home/HomeContainer";
-import UserContainer from "../../containers/User/UserContainer";
-import ViewUser from "../User/ViewUser";
-import PostContainer from "../../containers/Post/PostContainer";
-import ViewPost from "../Post/ViewPost";
-import AddEditPost from "../Post/AddEditPost";
+import ViewUser from "../../pages/User/View";
+import AddEditPost from "../../pages/Post/AddEditPost";
+import HomePage from "../../pages/Home/HomePage";
+import UserPage from "../../pages/User/Index";
+import PostPage from "../../pages/Post/Index";
+import ViewPost from "../../pages/Post/View";
 const index = () => {
   return (
     <>
@@ -50,13 +50,13 @@ const index = () => {
       <div className="container">
         <Switch>
           <Route exact path="/">
-            <HomeContainer />
+            <HomePage />
           </Route>
           <Route exact path="/users">
-            <UserContainer />
+            <UserPage />
           </Route>
           <Route exact path="/posts">
-            <PostContainer />
+            <PostPage />
           </Route>
 
           <Route exact path="/users/:userId" children={<ViewUser />} />
