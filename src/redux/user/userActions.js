@@ -1,4 +1,4 @@
-import api from "../../api/axios";
+import UserService from "../../services/UserService";
 import {
   FETCH_USERS_FAILURE,
   FETCH_USERS_REQUEST,
@@ -51,8 +51,8 @@ export const fetchUser = (userId) => {
   return async (dispatch) => {
     dispatch(fetchUserRequest());
     try {
-      const response = await api.get(`users/${userId}`);
-      dispatch(fetchUserSuccess(response.data));
+      const data = await UserService.getUser(userId);
+      dispatch(fetchUserSuccess(data));
     } catch (error) {
       console.log(error);
       dispatch(fetchUserFailure(error.message));
@@ -64,11 +64,11 @@ export const fetchUsers = () => {
   return async (dispatch) => {
     dispatch(fetchUsersRequest());
     try {
-      const users = await api.get("users");
-      dispatch(fetchUsersSuccess(users.data));
+      const data = await UserService.getAllUser();
+      dispatch(fetchUsersSuccess(data));
     } catch (error) {
       console.log(error);
-      return await dispatch(fetchUsersFailure(error.message));
+      dispatch(fetchUsersFailure(error.message));
     }
   };
 };

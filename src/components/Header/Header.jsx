@@ -3,7 +3,7 @@ import fake_icon from "../../assets/fake_icon.png";
 import { Route, Switch, NavLink } from "react-router-dom";
 import HomeContainer from "../../containers/Home/HomeContainer";
 import UserContainer from "../../containers/User/UserContainer";
-import UserDetails from "../User/UserDetails";
+import ViewUser from "../User/ViewUser";
 import PostContainer from "../../containers/Post/PostContainer";
 import ViewPost from "../Post/ViewPost";
 import AddEditPost from "../Post/AddEditPost";
@@ -59,7 +59,7 @@ const index = () => {
             <PostContainer />
           </Route>
 
-          <Route exact path="/users/:userId" children={<UserDetails />} />
+          <Route exact path="/users/:userId" children={<ViewUser />} />
           <Route exact path="/posts/add" children={<AddEditPost />} />
           <Route exact path="/posts/:postId" children={<ViewPost />} />
           <Route exact path="/posts/:postId/edit" children={<AddEditPost />} />

@@ -12,16 +12,16 @@ import {
   fetchPostUsersSuccess,
   fetchPostUsersFailure,
 } from "./postFetchActions";
-import api from "../../api/axios";
+
 import {
   createPostFailure,
   createPostRequest,
   createPostSuccess,
 } from "./postCreateActions";
 import {
-  editPostFailure,
-  editPostRequest,
-  editPostSuccess,
+  updatePostRequest,
+  updatePostSuccess,
+  updatePostFailure,
 } from "./postEditActions";
 
 import {
@@ -29,12 +29,17 @@ import {
   deletePostRequest,
   deletePostSuccess,
 } from "./postDeleteActions";
+import PostService from "../../services/PostService";
 
 export const fetchPostsByUserId = (query) => {
   return async (dispatch) => {
     dispatch(fetchPostsByUserIdRequest(query));
     try {
-      const { data } = await api.get(query);
+      const data =
+        query !== ""
+          ? await PostService.getAllPostByQuery(query)
+          : await PostService.getAllPost();
+
       dispatch(fetchPostsByUserIdSuccess(data));
     } catch (error) {
       console.log(error);
@@ -47,7 +52,7 @@ export const fetchPost = (postId) => {
   return async (dispatch) => {
     dispatch(fetchPostRequest());
     try {
-      const { data } = await api.get(`posts/${postId}`);
+      const data = await PostService.getPost(postId);
       dispatch(fetchPostSuccess(data));
       return data;
     } catch (error) {
@@ -61,7 +66,7 @@ export const fetchPosts = () => {
   return async (dispatch) => {
     dispatch(fetchPostsRequest());
     try {
-      const { data } = await api.get("posts");
+      const data = await PostService.getAllPost();
       dispatch(fetchPostsSuccess(data));
     } catch (error) {
       console.log(error);
@@ -74,7 +79,7 @@ export const fetchPostUsers = () => {
   return async (dispatch) => {
     dispatch(fetchPostUsersRequest());
     try {
-      const { data } = await api.get("users");
+      const data = await PostService.getUsers();
       dispatch(fetchPostUsersSuccess(data));
       return data;
     } catch (error) {
@@ -88,7 +93,7 @@ export const createPost = (postData) => {
   return async (dispatch) => {
     dispatch(createPostRequest());
     try {
-      const { data } = await api.post("posts", JSON.stringify(postData));
+      const data = await PostService.createPost(postData);
       dispatch(createPostSuccess(data));
     } catch (error) {
       console.log(error);
@@ -97,18 +102,15 @@ export const createPost = (postData) => {
   };
 };
 
-export const editPost = (postId, postData) => {
+export const updatePost = (postId, postData) => {
   return async (dispatch) => {
-    dispatch(editPostRequest());
+    dispatch(updatePostRequest());
     try {
-      const { data } = await api.put(
-        `posts/${postId}`,
-        JSON.stringify(postData)
-      );
-      dispatch(editPostSuccess(data));
+      const data = await PostService.updatePost(postId, postData);
+      dispatch(updatePostSuccess(data));
     } catch (error) {
       console.log(error);
-      dispatch(editPostFailure(error));
+      dispatch(updatePostFailure(error));
     }
   };
 };
@@ -117,7 +119,7 @@ export const deletePost = (postId) => {
   return async (dispatch) => {
     dispatch(deletePostRequest());
     try {
-      await api.delete(`posts/${postId}`); // response data don't have any value
+      await PostService.deletePost(postId); // response data don't have any value
       dispatch(deletePostSuccess());
     } catch (error) {
       console.log(error);

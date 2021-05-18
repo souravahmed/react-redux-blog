@@ -1,25 +1,25 @@
 import {
-  EDIT_POST_FAILURE,
-  EDIT_POST_REQUEST,
-  EDIT_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
+  UPDATE_POST_REQUEST,
+  UPDATE_POST_SUCCESS,
 } from "./postActionTypes";
 
-export const editPostRequest = () => {
+export const updatePostRequest = () => {
   return {
-    type: EDIT_POST_REQUEST,
+    type: UPDATE_POST_REQUEST,
   };
 };
 
-export const editPostSuccess = (data) => {
+export const updatePostSuccess = (data) => {
   return {
-    type: EDIT_POST_SUCCESS,
+    type: UPDATE_POST_SUCCESS,
     payload: data,
   };
 };
 
-export const editPostFailure = (error) => {
+export const updatePostFailure = (error) => {
   return {
-    type: EDIT_POST_FAILURE,
+    type: UPDATE_POST_FAILURE,
     error: error,
   };
 };

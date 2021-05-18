@@ -4,9 +4,9 @@ import {
   CREATE_POST_SUCCESS,
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
-  EDIT_POST_FAILURE,
-  EDIT_POST_REQUEST,
-  EDIT_POST_SUCCESS,
+  UPDATE_POST_REQUEST,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
   FETCH_POSTS_BY_USER_ID_FAILURE,
   FETCH_POSTS_BY_USER_ID_REQUEST,
   FETCH_POSTS_BY_USER_ID_SUCCESS,
@@ -132,7 +132,7 @@ export const postReducer = (state = initialState, action) => {
       };
 
     // edit post
-    case EDIT_POST_REQUEST:
+    case UPDATE_POST_REQUEST:
       return {
         ...state,
         loading: true,
@@ -140,13 +140,13 @@ export const postReducer = (state = initialState, action) => {
         posts: [],
       };
 
-    case EDIT_POST_SUCCESS:
+    case UPDATE_POST_SUCCESS:
       return {
         ...state,
         loading: false,
         postEditedResponse: action.payload,
       };
-    case EDIT_POST_FAILURE:
+    case UPDATE_POST_FAILURE:
       return {
         ...state,
         loading: false,

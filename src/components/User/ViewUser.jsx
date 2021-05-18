@@ -5,7 +5,7 @@ import { fetchUser } from "../../redux";
 import Loader from "../Shared/Loader";
 import LinkButton from "../Shared/LinkButton";
 
-const UserDetails = () => {
+const ViewUser = () => {
   const { userId } = useParams();
   const state = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -41,4 +41,4 @@ const UserDetails = () => {
   );
 };
 
-export default UserDetails;
+export default ViewUser;

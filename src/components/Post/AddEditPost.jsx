@@ -1,7 +1,7 @@
 import { React, useEffect } from "react";
 import LinkButton from "../Shared/LinkButton";
 import { useSelector, useDispatch } from "react-redux";
-import { createPost, editPost, fetchPost, fetchPostUsers } from "../../redux";
+import { createPost, updatePost, fetchPost, fetchPostUsers } from "../../redux";
 import Loader from "../Shared/Loader";
 import { useForm, Controller } from "react-hook-form";
 import postSchema from "../../uitils/PostSchemaUtils";
@@ -66,7 +66,7 @@ const AddEditPost = () => {
       ...data,
       userId: data.userId.value,
     };
-    if (postId) dispatch(editPost(postId, postData));
+    if (postId) dispatch(updatePost(postId, postData));
     else {
       dispatch(createPost(postData));
       reset();

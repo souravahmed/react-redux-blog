@@ -19,7 +19,7 @@ const PostContainer = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const [selecteUserId, setSelecteUserId] = useState(0);
-  const [filterByUserQuery, setFilterByUserQuery] = useState("posts");
+  const [filterByUserQuery, setFilterByUserQuery] = useState("");
   const [deletedPostId, setDeletedPostId] = useState(0);
 
   const table = new DataTableInstance();
@@ -43,7 +43,7 @@ const PostContainer = () => {
 
   const handleFilterByUserPost = (obj) => {
     const userId = obj.value;
-    const query = userId === 0 ? "posts" : `posts?userId=${userId}`;
+    const query = userId === 0 ? "" : `?userId=${userId}`;
     setSelecteUserId(userId);
     setFilterByUserQuery(query);
   };

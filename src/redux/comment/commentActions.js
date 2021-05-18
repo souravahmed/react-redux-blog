@@ -1,4 +1,4 @@
-import api from "../../api/axios";
+import CommentService from "../../services/CommentService";
 import {
   FETCH_COMMENTS_BY_POST_ID_REQUEST,
   FETCH_COMMENTS_BY_POST_ID_SUCCESS,
@@ -29,8 +29,8 @@ export const fetchCommentsByPostId = (postId) => {
   return async (dispatch) => {
     dispatch(fetchCommentsByPostIdRequest());
     try {
-      const response = await api.get(`/comments?postId=${postId}`);
-      dispatch(fetchCommentsByPostIdSuccess(response.data));
+      const data = await CommentService.getCommentsByPostId(postId);
+      dispatch(fetchCommentsByPostIdSuccess(data));
     } catch (error) {
       console.log(error);
       dispatch(fetchCommentsByPostIdFailure(error));
