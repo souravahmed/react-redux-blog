@@ -33,8 +33,10 @@ const AddEditPost = () => {
   useEffect(() => {
     const getPost = async () => {
       if (postId !== undefined) {
-        const postData = await fetchPost(postId)(dispatch);
-        const users = await fetchPostUsers()(dispatch);
+        const [postData, users] = await Promise.all([
+          fetchPost(postId)(dispatch),
+          fetchPostUsers()(dispatch),
+        ]);
         const selectedUserOption = users.filter(
           (user) => user.id === postData?.userId
         );
