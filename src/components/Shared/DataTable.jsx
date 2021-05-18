@@ -29,10 +29,9 @@ const DataTable = ({ table }) => {
                     DataTableInstance.DELETE_ACTION ? (
                     <button
                       className="btn-border-less"
-                      data-toggle="modal"
-                      data-target="#targetModal"
+                      data-bs-toggle="modal"
+                      data-bs-target="#targetModal"
                       key={index}
-                      href="#"
                     >
                       <i
                         table-data={eachData.id}

@@ -6,5 +6,6 @@ export {
   createPost,
   fetchPostUsers,
   editPost,
+  deletePost,
 } from "./post/postActions";
 export { fetchCommentsByPostId } from "./comment/commentActions";

@@ -2,6 +2,8 @@ import {
   CREATE_POST_FAILURE,
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
   EDIT_POST_FAILURE,
   EDIT_POST_REQUEST,
   EDIT_POST_SUCCESS,
@@ -100,8 +102,6 @@ export const postReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         users: action.payload,
-        post: {},
-        posts: [],
       };
     case FETCH_POST_USERS_FAILURE:
       return {
@@ -144,13 +144,28 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        post: action.payload,
+        postEditedResponse: action.payload,
       };
     case EDIT_POST_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.error,
+      };
+
+    // delete post
+
+    case DELETE_POST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        postCreatedResponse: {},
+        post: {},
+      };
+    case DELETE_POST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
       };
 
     default:

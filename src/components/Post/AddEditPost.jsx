@@ -27,6 +27,10 @@ const AddEditPost = () => {
   });
 
   useEffect(() => {
+    dispatch(fetchPostUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
     const getPost = async () => {
       if (postId !== undefined) {
         const postData = await fetchPost(postId)(dispatch);
