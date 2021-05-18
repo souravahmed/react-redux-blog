@@ -6,7 +6,7 @@ import UserContainer from "../../containers/User/UserContainer";
 import UserDetails from "../User/UserDetails";
 import PostContainer from "../../containers/Post/PostContainer";
 import ViewPost from "../Post/ViewPost";
-import AddPost from "../Post/AddPost";
+import AddEditPost from "../Post/AddEditPost";
 const index = () => {
   return (
     <>
@@ -60,8 +60,9 @@ const index = () => {
           </Route>
 
           <Route exact path="/users/:userId" children={<UserDetails />} />
-          <Route exact path="/posts/add" children={<AddPost />} />
+          <Route exact path="/posts/add" children={<AddEditPost />} />
           <Route exact path="/posts/:postId" children={<ViewPost />} />
+          <Route exact path="/posts/:postId/edit" children={<AddEditPost />} />
         </Switch>
       </div>
     </>

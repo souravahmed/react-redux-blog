@@ -1,7 +1,7 @@
 import { React, useEffect } from "react";
 import LinkButton from "../Shared/LinkButton";
 import { useSelector, useDispatch } from "react-redux";
-import { createPost, fetchUsers } from "../../redux";
+import { createPost, editPost, fetchPost, fetchPostUsers } from "../../redux";
 import Loader from "../Shared/Loader";
 import { useForm, Controller } from "react-hook-form";
 import postSchema from "../../uitils/PostSchemaUtils";
@@ -9,11 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Select from "react-select";
 import MessageTypeUtils from "../../uitils/MessageTypeUtils";
 import AlertMessage from "../Shared/AlertMessage";
+import { useParams } from "react-router-dom";
 
-const AddPost = () => {
-  const userState = useSelector((state) => state.user);
+const AddEditPost = () => {
   const postState = useSelector((state) => state.post);
   const dispatch = useDispatch();
+  const { postId } = useParams();
 
   const {
     register,
@@ -26,38 +27,69 @@ const AddPost = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
+    const getPost = async () => {
+      if (postId !== undefined) {
+        const postData = await fetchPost(postId)(dispatch);
+        const users = await fetchPostUsers()(dispatch);
+        const selectedUserOption = users.filter(
+          (user) => user.id === postData?.userId
+        );
 
-  const options = userState?.users?.map((user) => {
+        const option = selectedUserOption.map((user) => ({
+          label: user.name,
+          value: user.id,
+        }));
+
+        const data = {
+          ...postData,
+          userId: option,
+        };
+        reset(data);
+      }
+    };
+    getPost();
+  }, [postId, reset, dispatch]);
+
+  const options = postState?.users?.map((user) => {
     return { label: user.name, value: user.id };
   });
-  options.unshift({ label: "Select a user", value: "" });
+  options?.unshift({ label: "Select a user", value: "" });
 
   const handleOnSubmit = (data, e) => {
     const postData = {
       ...data,
       userId: data.userId.value,
     };
-    dispatch(createPost(postData));
+    if (postId) dispatch(editPost(postId, postData));
+    else {
+      dispatch(createPost(postData));
+      reset();
+    }
     e.target.reset();
-    reset();
   };
 
   return (
     <div className="card m-5">
-      <div className="card-header">Create post</div>
+      <div className="card-header">{postId ? "Edit Post" : "Create Post"}</div>
       <div className="card-body">
         <div className="row d-flex justify-content-center">
           <div className="col-md-6">
-            {userState?.loading || postState?.loading ? (
+            {postState?.loading ? (
               <Loader />
             ) : (
               <>
                 {isSubmitSuccessful && (
                   <AlertMessage
-                    message={"Post create successfully"}
-                    messageType={MessageTypeUtils.SUCCESS}
+                    message={
+                      postId && postState?.error === ""
+                        ? "Post updated successfully"
+                        : postState?.error === "" && "Post created successfully"
+                    }
+                    messageType={
+                      postState?.error === ""
+                        ? MessageTypeUtils.SUCCESS
+                        : MessageTypeUtils.FAILED
+                    }
                   />
                 )}
                 <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -125,4 +157,4 @@ const AddPost = () => {
   );
 };
 
-export default AddPost;
+export default AddEditPost;

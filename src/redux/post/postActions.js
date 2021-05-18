@@ -8,6 +8,9 @@ import {
   fetchPostsRequest,
   fetchPostsSuccess,
   fetchPostsFailure,
+  fetchPostUsersRequest,
+  fetchPostUsersSuccess,
+  fetchPostUsersFailure,
 } from "./postFetchActions";
 import api from "../../api/axios";
 import {
@@ -15,6 +18,11 @@ import {
   createPostRequest,
   createPostSuccess,
 } from "./postCreateActions";
+import {
+  editPostFailure,
+  editPostRequest,
+  editPostSuccess,
+} from "./postEditActions";
 
 export const fetchPostsByUserId = (query) => {
   return async (dispatch) => {
@@ -35,6 +43,7 @@ export const fetchPost = (postId) => {
     try {
       const response = await api.get(`posts/${postId}`);
       dispatch(fetchPostSuccess(response.data));
+      return response.data;
     } catch (error) {
       console.log(error);
       dispatch(fetchPostFailure(error));
@@ -55,6 +64,20 @@ export const fetchPosts = () => {
   };
 };
 
+export const fetchPostUsers = () => {
+  return async (dispatch) => {
+    dispatch(fetchPostUsersRequest());
+    try {
+      const response = await api.get("users");
+      dispatch(fetchPostUsersSuccess(response.data));
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchPostUsersFailure(error));
+    }
+  };
+};
+
 export const createPost = (data) => {
   return async (dispatch) => {
     dispatch(createPostRequest());
@@ -64,6 +87,19 @@ export const createPost = (data) => {
     } catch (error) {
       console.log(error);
       dispatch(createPostFailure(error));
+    }
+  };
+};
+
+export const editPost = (postId, data) => {
+  return async (dispatch) => {
+    dispatch(editPostRequest());
+    try {
+      const response = await api.put(`posts/${postId}`, JSON.stringify(data));
+      dispatch(editPostSuccess(response.data));
+    } catch (error) {
+      console.log(error);
+      dispatch(editPostFailure(error));
     }
   };
 };

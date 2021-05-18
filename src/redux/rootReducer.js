@@ -4,8 +4,8 @@ import { postReducer } from "./post/postReducer";
 import { commentReducer } from "./comment/commentReducer";
 
 const rootReducer = combineReducers({
-  user: userReducer,
   post: postReducer,
+  user: userReducer,
   comment: commentReducer,
 });
 

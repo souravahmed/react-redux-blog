@@ -4,5 +4,7 @@ export {
   fetchPost,
   fetchPostsByUserId,
   createPost,
+  fetchPostUsers,
+  editPost,
 } from "./post/postActions";
 export { fetchCommentsByPostId } from "./comment/commentActions";

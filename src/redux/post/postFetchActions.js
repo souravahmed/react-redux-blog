@@ -8,6 +8,9 @@ import {
   FETCH_POSTS_BY_USER_ID_REQUEST,
   FETCH_POSTS_BY_USER_ID_SUCCESS,
   FETCH_POSTS_BY_USER_ID_FAILURE,
+  FETCH_POST_USERS_REQUEST,
+  FETCH_POST_USERS_SUCCESS,
+  FETCH_POST_USERS_FAILURE,
 } from "./postActionTypes";
 
 // fetch posts
@@ -62,6 +65,28 @@ export const fetchPostsByUserIdSuccess = (data) => {
 export const fetchPostsByUserIdFfailure = (error) => {
   return {
     type: FETCH_POSTS_BY_USER_ID_FAILURE,
+    error: error,
+  };
+};
+
+// fetch users for post creation
+
+export const fetchPostUsersRequest = () => {
+  return {
+    type: FETCH_POST_USERS_REQUEST,
+  };
+};
+
+export const fetchPostUsersSuccess = (data) => {
+  return {
+    type: FETCH_POST_USERS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const fetchPostUsersFailure = (error) => {
+  return {
+    type: FETCH_POST_USERS_FAILURE,
     error: error,
   };
 };

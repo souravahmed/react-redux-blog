@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts, fetchPostsByUserId, fetchUsers } from "../../redux";
+import { fetchPosts, fetchPostsByUserId, fetchPostUsers } from "../../redux";
 import DataTable from "../../components/Shared/DataTable";
 import Search from "../../components/Shared/Search";
 import Loader from "../../components/Shared/Loader";
@@ -10,10 +10,9 @@ import LinkButton from "../../components/Shared/LinkButton";
 
 const PostContainer = () => {
   const postState = useSelector((state) => state.post);
-  const userState = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selecteUserId, setSelecteUserId] = useState("0");
+  const [selecteUserId, setSelecteUserId] = useState(0);
   const [filterByUserQuery, setFilterByUserQuery] = useState("posts");
 
   const table = new DataTableInstance();
@@ -24,7 +23,7 @@ const PostContainer = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-    dispatch(fetchUsers());
+    dispatch(fetchPostUsers());
   }, [dispatch]);
 
   useEffect(() => {
@@ -51,10 +50,15 @@ const PostContainer = () => {
     actionType: DataTableInstance.VIEW_ACTION,
   });
 
-  const options = userState?.users?.map((user) => {
+  table.actions.push({
+    actionClasses: "fas fa-edit",
+    actionType: DataTableInstance.EDIT_ACTION,
+  });
+
+  const options = postState?.users?.map((user) => {
     return { label: user.name, value: user.id };
   });
-  options.unshift({ label: "Select a user", value: 0 });
+  options?.unshift({ label: "Select a user", value: 0 });
 
   return (
     <div className="card m-5">

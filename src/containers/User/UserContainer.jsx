@@ -25,7 +25,7 @@ const UserContainer = () => {
     setQuery(e.target.value);
   };
 
-  table.data.entities = state.users.filter((user) => {
+  table.data.entities = state?.users?.filter((user) => {
     return user.name.toLowerCase().includes(query.toLowerCase());
   });
 
@@ -36,7 +36,7 @@ const UserContainer = () => {
 
   return (
     <div className="card m-5">
-      <div className="card-header">Total user: {state.users.length}</div>
+      <div className="card-header">Total user: {state?.users?.length}</div>
       <div className="card-body">
         <div className="row">
           <div className="col-md-4">
@@ -45,7 +45,7 @@ const UserContainer = () => {
         </div>
         <div className="row">
           <div className="col-12 p-5">
-            {state.loading ? <Loader /> : <DataTable table={table} />}
+            {state?.loading ? <Loader /> : <DataTable table={table} />}
           </div>
         </div>
       </div>

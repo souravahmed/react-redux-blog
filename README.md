@@ -22,8 +22,8 @@ npm start
 - show comments for specific post and hide them
 - sort posts by user
 - live search in dropdown using react-select
-- add post using react-hook-form
-- for validation used hookform/resolvers and yup
+- add/edit post using [react-hook-form](https://react-hook-form.com/) and [hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers)
+- for validation used [yup](https://www.npmjs.com/package/yup)
 
 ### `npm start`
 
