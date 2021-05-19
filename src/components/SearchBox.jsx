@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = (props) => {
+const SearchBox = (props) => {
   return (
     <div className="input-group rounded">
       <input
@@ -18,4 +18,4 @@ const Search = (props) => {
   );
 };
 
-export default Search;
+export default SearchBox;

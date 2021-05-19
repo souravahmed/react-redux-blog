@@ -7,7 +7,7 @@ import {
   fetchPostUsers,
 } from "../../redux";
 import DataTable from "../../components/DataTable";
-import Search from "../../components/Search";
+import Search from "../../components/SearchBox";
 import Loader from "../../components/Loader";
 import DataTableInstance from "../../uitils/DataTableUtils";
 import LiveSearchDropDown from "../../components/LiveSearchDropDown";

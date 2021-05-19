@@ -3,7 +3,7 @@ import { fetchUsers } from "../../redux";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../../components/Loader";
 import DataTableInstance from "../../uitils/DataTableUtils";
-import Search from "../../components/Search";
+import Search from "../../components/SearchBox";
 import DataTable from "../../components/DataTable";
 
 const Index = () => {
