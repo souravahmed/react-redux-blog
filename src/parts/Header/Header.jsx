@@ -49,7 +49,7 @@ const index = () => {
 
       <div className="container">
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/react-redux-blog">
             <HomePage />
           </Route>
           <Route exact path="/users">
