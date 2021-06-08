@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-redux-blog/static/css/main.e5ef3796.chunk.css",
+    "main.js": "/react-redux-blog/static/js/main.c1e6bd17.chunk.js",
+    "main.js.map": "/react-redux-blog/static/js/main.c1e6bd17.chunk.js.map",
+    "runtime-main.js": "/react-redux-blog/static/js/runtime-main.91f4554b.js",
+    "runtime-main.js.map": "/react-redux-blog/static/js/runtime-main.91f4554b.js.map",
+    "static/css/2.4f8976c6.chunk.css": "/react-redux-blog/static/css/2.4f8976c6.chunk.css",
+    "static/js/2.e84b9699.chunk.js": "/react-redux-blog/static/js/2.e84b9699.chunk.js",
+    "static/js/2.e84b9699.chunk.js.map": "/react-redux-blog/static/js/2.e84b9699.chunk.js.map",
+    "index.html": "/react-redux-blog/index.html",
+    "static/css/2.4f8976c6.chunk.css.map": "/react-redux-blog/static/css/2.4f8976c6.chunk.css.map",
+    "static/css/main.e5ef3796.chunk.css.map": "/react-redux-blog/static/css/main.e5ef3796.chunk.css.map",
+    "static/js/2.e84b9699.chunk.js.LICENSE.txt": "/react-redux-blog/static/js/2.e84b9699.chunk.js.LICENSE.txt",
+    "static/media/fake_icon.d696a61e.png": "/react-redux-blog/static/media/fake_icon.d696a61e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91f4554b.js",
+    "static/css/2.4f8976c6.chunk.css",
+    "static/js/2.e84b9699.chunk.js",
+    "static/css/main.e5ef3796.chunk.css",
+    "static/js/main.c1e6bd17.chunk.js"
+  ]
+}
